@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+	<html ng-app="electromarket">
+	<head>
+		<title>ElectroMarket</title>
+		<script src="angular.js"></script>
+		<link href="bootstrap.css" rel="stylesheet" />
+		<link href="bootstrap-theme.css" rel="stylesheet" />
+		<script>
+			angular.module("electromarket", ["customFilters", "cart", "ngRoute"])
+			.config(function ($routeProvider) {
+				$routeProvider.when("/complete", {
+					templateUrl: "/views/thankYou.html"
+				});
+				
+				$routeProvider.when("/placeorder", {
+					templateUrl: "/views/placeOrder.html"
+				});
+			
+				$routeProvider.when("/checkout", {
+					templateUrl: "/views/checkoutSummary.html"
+				});
+				
+				$routeProvider.when("/products", {
+					templateUrl: "/views/productList.html"
+				});
+				
+				$routeProvider.otherwise({
+					templateUrl: "/views/productList.html"
+				});
+			});
+		</script>
+		<script src="controllers/electromarket.js"></script>
+		<script src="filters/customFilters.js"></script>
+		<script src="controllers/productListController.js"></script>
+		<script src="components/cart/cart.js"></script>
+		<script src="ngmodules/angular-route.js"></script>
+		<script src="ngmodules/angular-locale_pl-pl.js"></script>
+		<script src="controllers/checkoutControllers.js"></script>
+	</head>
+	<body ng-controller="electromarketCtrl">
+		<div class="navbar navbar-inverse">
+			<a class="navbar-brand" href="#">SKLEP ELEKTRONICZNY</a>
+			<cart-summary />
+		</div>
+		
+		<div class="alert alert-danger" ng-show="data.error">
+			Błąd ({{data.error.status}}). Dane produktu nie zostały wczytane.
+			<a href="/app.html" class="alert-link">Kliknij tutaj, aby spróbować ponownie</a>
+		</div>
+		
+		<ng-view />
+		
+	</body>
+</html>

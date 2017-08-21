@@ -1,0 +1,79 @@
+<style>
+	.ng-invalid { background-color: lightpink; }
+	.ng-valid { background-color: lightgreen; }
+	span.error { color: red; font-weight: bold; }
+</style>
+
+<h2>Dokończ zamówienie</h2>
+<p>Podaj wymagane dane, a zamówienie zostanie natychmiast wysłane!</p>
+
+<form name="shippingForm" novalidate>
+	<div class="well">
+		<h3>Odbiorca</h3>
+		<div class="form-group">
+			<label>Imię i nazwisko</label>
+			<input name="name" class="form-control" 
+				ng-model="data.shipping.name" required/>
+			<span class="error" ng-show="shippingForm.name.$error.required">
+				Proszę podać imię i nazwisko.
+			</span>
+		</div>
+		<h3>Adres</h3>
+		<div class="form-group">
+			<label>Nazwa ulicy</label>
+			<input name="street" class="form-control" 
+				ng-model="data.shipping.street" required/>
+			<span class="error" ng-show="shippingForm.street.$error.required">
+				Proszę podać nazwę ulicy.
+			</span>
+		</div>
+		<div class="form-group">
+			<label>Miasto</label>
+			<input name="city" class="form-control"
+				ng-model="data.shipping.city" required />
+			<span class="error" ng-show="shippingForm.city.$error.required">
+				Proszę podać nazwę miejscowości.
+			</span>
+		</div>
+		<div class="form-group">
+			<label>Województwo</label>
+			<input name="state" class="form-control"
+				ng-model="data.shipping.state" required />
+			<span class="error" ng-show="shippingForm.state.$error.required">
+				Proszę podać nazwę województwa.
+			</span>
+		</div>
+		<div class="form-group">
+			<label>Kod pocztowy</label>
+			<input name="zip" class="form-control"
+				ng-model="data.shipping.zip" required />
+			<span class="error" ng-show="shippingForm.zip.$error.required">
+				Proszę podać kod pocztowy.
+			</span>
+		</div>
+		<div class="form-group">
+			<label>Kraj</label>
+			<input name="country" class="form-control"
+				ng-model="data.shipping.country" required />
+			<span class="error" ng-show="shippingForm.country.$error.required">
+				Proszę podać nazwę kraju
+			</span>
+		</div>
+
+		<h3>Opcje</h3>
+		<div class="checkbox">
+			<label>
+				<input name="giftwrap" type="checkbox"
+					ng-model="data.shipping.giftwrap" />
+				Zapakuj jako prezent.
+			</label>
+		</div>
+		
+		<div class="text-center">
+			<button ng-disabled="shippingForm.$invalid" 
+				ng-click="sendOrder(data.shipping)" class="btn btn-primary">
+				Dokończ zamówienie
+			</button>
+		</div>
+	</div>
+</form>
